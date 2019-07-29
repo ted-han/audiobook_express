@@ -20,10 +20,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   let phonenum = req.body.phonenum;
-  console.log(phonenum)
+  console.log('입력ID: '+phonenum)
 
   let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
-  console.log(JSON.stringify(userdata.users));
+  // console.log(JSON.stringify(userdata.users));
   let userlist = userdata.users;
 
   // 없는 유저
@@ -31,8 +31,11 @@ router.post('/', function(req, res, next) {
     return res.render('login', { res: {"wrong":"Y"} });
   // 있는 유저
   } else {
+    let userid = phonenum;
     let username = userdata.userinfo[phonenum].name;
-    console.log(username);
+    console.log('userid: ' +userid);
+    console.log('username: ' +username);
+    req.session.userid = userid;
     req.session.username = username;
     return res.redirect('/mypage');
   }

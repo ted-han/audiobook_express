@@ -27,7 +27,6 @@ app.use(session({
   cookie: { maxAge: 60000 }
  }));
 
- 
 app.use(logger('dev'));
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false ,limit: '50mb'}));
@@ -35,7 +34,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false,limit: '50mb'}));
 app.use(bodyParser.json());
-
 
 
 app.use('/signup', signupRouter);

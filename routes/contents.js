@@ -6,10 +6,10 @@ var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  
+  let result = {}
 
 
-  res.render('contents', { res: 'ffffsssf' });
+  res.render('contents', { "res": result });
 });
 
 
