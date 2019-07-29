@@ -37,7 +37,7 @@ function startRecording() {
 	*/
 
 	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-		__log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
+		// __log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
 
 		/*
 			create an audio context after getUserMedia is called
@@ -71,16 +71,16 @@ function startRecording() {
 		  numChannels:2, //2 is the default, mp3 encoding supports only 2
 		  onEncoderLoading: function(recorder, encoding) {
 		    // show "loading encoder..." display
-		    __log("Loading "+encoding+" encoder...");
+		    // __log("Loading "+encoding+" encoder...");
 		  },
 		  onEncoderLoaded: function(recorder, encoding) {
 		    // hide "loading encoder..." display
-		    __log(encoding+" encoder loaded");
+		    // __log(encoding+" encoder loaded");
 		  }
 		});
 
 		recorder.onComplete = function(recorder, blob) { 
-			__log("Encoding complete");
+			__log("녹음 종료");
 			createDownloadLink(blob,recorder.encoding);
 			encodingTypeSelect.disabled = false;
 		}
@@ -95,7 +95,7 @@ function startRecording() {
 		//start the recording process
 		recorder.startRecording();
 
-		 __log("Recording started");
+		 __log("녹음 시작");
 
 	}).catch(function(err) {
 	  	//enable the record button if getUSerMedia() fails
@@ -110,7 +110,7 @@ function startRecording() {
 }
 
 function stopRecording() {
-	console.log("stopRecording() called");
+	// console.log("stopRecording() called");
 	
 	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
@@ -122,7 +122,7 @@ function stopRecording() {
 	//tell the recorder to finish the recording (stop recording + encode the recorded audio)
 	recorder.finishRecording();
 
-	__log('Recording stopped');
+	// __log('Recording stopped');
 }
 
 function createDownloadLink(blob,encoding) {
@@ -144,29 +144,24 @@ function createDownloadLink(blob,encoding) {
 	//upload link
 	var upload = document.createElement('a');
 	// upload.href="#";
-	upload.innerHTML = "제출";
+	upload.innerHTML = "녹음파일 제출";
 	upload.addEventListener("click", function(event){
 		let xhr=new XMLHttpRequest();
-
 
 		xhr.onload=function(e) {
 			if(this.readyState === 4) {
 			//   console.log("Server returned: ",e.target.responseText);
-				console.log("Server returned: ",e.target.status);
+				// console.log("Server returned: ",e.target.status);
 				if(e.target.status==200) {
-				// location.href="/mypage";
+				location.href="/mypage";
 				}
 			}
 		};
 
-
-		xhr.open("POST","/upload",true);
+		xhr.open("POST","/contents",true);
 		// xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-		xhr.setRequestHeader("content-type", "audio/wav");
+		// xhr.setRequestHeader("content-type", "audio/wav");
 		console.log(blob)
-		let data = new FormData();
-		data.append("audio", blob);
-		console.log(data)
 		xhr.send(blob);
 	});
 

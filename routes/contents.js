@@ -15,12 +15,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
 
-  let audioname = new Date().toISOString();
+  // let audioname = new Date().toISOString();
 
-  console.log('hi')
+  console.log('post contents')
   console.log(req.body)
   // console.log(JSON.stringify(req.body))
-
 
   // fs.appendFile(`../savefiles/${audioname}.wav`, req.body, function (err) {
   //   fs.appendFile(`public/savefiles/test3.wav`, req.body, function (err) {
@@ -28,7 +27,7 @@ router.post('/', function(req, res) {
   //     console.log('Saved!');
   // });
 
-  res.send('htkk');
+  res.send('send');
 });
 
 

@@ -6,19 +6,21 @@
     <title>Aduio book</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <% include ./partials/header %>
     <h1><b>마이페이지</b></h1>
-    <h2><%= res.username %>님!</h2>
-    <h2>오늘도 안녕하세요.</h2>
+    <h2><%= res.username %>님! 오늘도 안녕하세요.</h2>
     <p>구독자: 0명 총 재생시간 : 10분</p>
 
     <h3>내 오디오북</h3>
     <ul>
         <% for(let i=0; i<res.abook.length; i++){ %>
           <li>
-              <%= res.abook[i] %> <button type="button" class="btn btn-outline-secondary">듣기</button>
+              <%= res.abook[i] %> <button type="button" class="badge badge-primary">듣기</button>
           </li>
         <% } %>
     </ul>
@@ -28,19 +30,25 @@
     <ul>
       <% for(let i=0; i<res.contents.length; i++){ %>
         <li>
-          <%= res.contents[i].name %>:  <%= res.contents[i].msg %> 
-          
-          <% if(res.contents[i].reply=='Y'){ %>
-            <button type="button" class="btn btn-primary" >
-              답장완료
-            </button>
-          <% } else { %>
-            <td style="background-color:rgb(241, 71, 71)"><%= res.stts %></td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-myvalue="<%= res.contents[i].name %>" >
-              답장하기
-            </button>
-          <% } %>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= res.contents[i].name %></h5>
+              <p class="card-text"><%= res.contents[i].msg %> </p>
+
+              <% if(res.contents[i].reply=='Y'){ %>
+                <button type="button" class="badge badge-secondary" >
+                  답장완료
+                </button>
+              <% } else { %>
+                <td style="background-color:rgb(241, 71, 71)"><%= res.stts %></td>
+                <!-- Button trigger modal -->
+                <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" data-myvalue="<%= res.contents[i].name %>" >
+                  답장하기
+                </button>
+              <% } %>
+            </div>
+          </div>
+
         </li>
       <% } %>
     </ul>

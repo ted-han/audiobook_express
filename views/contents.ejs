@@ -8,24 +8,32 @@
 
     <link rel="stylesheet" type="text/css" href="stylesheets/style_contents.css">
 
-    <title>duio book</title>
+    <title>aduio book</title>
 </head>
 <body>
-    <% include ./partials/header %>
-    <h1>콘텐츠 등록하기</h1>
-  <select id="encodingTypeSelect">
+  <% include ./partials/header %>
+  <h1>콘텐츠 등록하기</h1>
+  
+  <select style="display:none;" id="encodingTypeSelect">
     <option value="wav">Waveform Audio (.wav)</option>
   </select>
-  
-  <div id="controls">
-      <button id="recordButton">Record</button>
-      <button id="stopButton" disabled>Stop</button>
-  </div>
-  <div id="formats"></div>
-  <h3>Log</h3>
-  <pre id="log"></pre>
 
-  <h3>Recordings</h3>
+  <div class="card" style="width: 100%;">
+      <h3 >오늘도 아이들에게 시를 읽어주시겠어요?</h3>
+      <img src="../images/smile.jpg" class="card-img-top" alt="smile">
+      <div >
+        <p >읽어주시는 시를 듣고 아이들이 한글을 배워요!</p>
+      </div>
+    </div>
+
+
+  <div id="controls">
+    <button id="recordButton">Record</button>
+    <button id="stopButton" disabled>Stop</button>
+  </div>
+
+  <div style="display:none;"  id="formats"></div>
+  <pre  id="log"></pre>
   <ol id="recordingsList"></ol>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
