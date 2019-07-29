@@ -9,48 +9,54 @@
 </head>
 <body>
     <% include ./partials/header %>
-    <h1>마이페이지</h1>
-    <p>박혜진님</p>
-    <p>구독자:40명 총 재생시간 : 240분</p>
+    <h1><b>마이페이지</b></h1>
+    <h2><%= res.username %>님!</h2>
+    <h2>오늘도 안녕하세요.</h2>
+    <p>구독자: 0명 총 재생시간 : 10분</p>
+
+    <h3>내 오디오북</h3>
+    <ul>
+        <% for(let i=0; i<res.abook.length; i++){ %>
+          <li>
+              <%= res.abook[i] %> <button type="button" class="btn btn-outline-secondary">듣기</button>
+          </li>
+        <% } %>
+    </ul>
+
+    <h3>나에게 온 메세지</h3>
 
     <ul>
-        <% for(let i=0; i<contents.length; i++){ %>
+        <% for(let i=0; i<res.contents.length; i++){ %>
             <li>
-                <%= contents[i] %> <button type="button" class="btn btn-outline-secondary">듣기</button>
+                <%= res.contents[i].name %>:  <%= res.contents[i].msg %> <button type="button" class="btn btn-outline-secondary">답장하기</button>
             </li>
         <% } %>
     </ul>
 
+
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        +
-      </button>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">책을 읽어주시겠어요?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              새로운 책을 등록하시거나 지난 번 책을 이어 읽을 수 있습니다.
-            </div>
-            <div class="modal-footer">
-                <a href="/contents"><button type="button" class="btn btn-primary">새로운 책 읽어주기</button></a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">이어서 책 읽어주기</button>
-            </div>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">+</button> -->
+          
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">책을 읽어주시겠어요?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            새로운 책을 등록하시거나 지난 번 책을 이어 읽을 수 있습니다.
+          </div>
+          <div class="modal-footer">
+              <a href="/contents"><button type="button" class="btn btn-primary">새로운 책 읽어주기</button></a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">이어서 책 읽어주기</button>
           </div>
         </div>
       </div>
-
-        <audio controls>
-            <source src="savefiles/test3.wav" type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

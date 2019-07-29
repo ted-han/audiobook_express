@@ -7,12 +7,10 @@ var bodyParser = require('body-parser')
 const session = require('express-session');
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var signupRouter = require('./routes/signup');
+var loginRouter = require('./routes/login');
 var mypageRouter = require('./routes/mypage');
 var contentsRouter = require('./routes/contents');
-var msgRouter = require('./routes/msg');
-var uploadRouter = require('./routes/upload');
 
 var app = express();
 
@@ -38,15 +36,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false,limit: '50mb'}));
 app.use(bodyParser.json());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
+app.use((req,res,next)=>{
+  if(req.session.username){
+    next();
+  } else {
+    console.log('세션이없다')
+    res.redirect('/login');
+  }
+});
+
 app.use('/mypage', mypageRouter);
 app.use('/contents', contentsRouter);
-app.use('/msg', msgRouter);
-app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  res.redirect('/login');
   next(createError(404));
 });
 

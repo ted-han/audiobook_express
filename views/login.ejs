@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>로그인</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+      <div>
+        <p><%= (res.wrong)?'휴대폰번호를 잘못입력하였습니다.':''%></p>
+      </div>
+      <form action="/login" method="post">
+        <div>
+          <label><b>휴대폰번호</b></label>
+          <input type="text" placeholder="휴대폰번호를 입력해주세요." name="phonenum">
+          <button type="submit">로그인</button>
+        </div>
+      </form>
+      <div>
+        <a href="/signup">회원가입</a>
+      </div>
+    </div>
+
+  </body>
+</html>
