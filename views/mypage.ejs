@@ -9,14 +9,32 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        margin-left: auto;
+margin-right: auto;
+        align-items: center;
+        text-align: center
+      }
+      head {
+        margin: 0 auto;
+        align-items: center;
+      }
+      h1 {
+        text-align: center
+      }
+    </style>
 </head>
 <body>
     <% include ./partials/header %>
-    <h1><b>마이페이지</b></h1>
+    <h1>마이페이지</h1>
+    <br/>
     <h2><%= res.username %>님! 오늘도 안녕하세요.</h2>
     <p>구독자: 0명 총 재생시간 : 10분</p>
 
-    <h3>내 오디오북</h3>
+    <!-- <h3>내 오디오북</h3>
     <ul>
         <% for(let i=0; i<res.abook.length; i++){ %>
           <li>
@@ -24,6 +42,10 @@
           </li>
         <% } %>
     </ul>
+     -->
+
+    <h3>내가 읽은 컨텐츠</h3>
+    <p>지금까지 총 1개의 책을 읽어주셨습니다.</p>
 
     <h3>나에게 온 메세지</h3>
 
