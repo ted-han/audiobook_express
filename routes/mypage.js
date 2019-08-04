@@ -11,18 +11,22 @@ router.get('/', function(req, res, next) {
   let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
   let msgsoen = userdata.userinfo[userid]["soen"];
   let msgjiho = userdata.userinfo[userid]["jiho"];
+  let cnt = userdata.userinfo[userid]["cnt"];
 
 
   let result = {
     "username": username,
     "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+    "cnt": cnt,
     "contents": [
       {"name":"소은","msg":"안녕하세요! 읽어주신 시를 들었어요. 어렵지만 너무 좋아요. 감사합니다.","reply":msgsoen},
       {"name":"지호","msg":"감사합니다. 자기 전에 들었어요.","reply":msgjiho},
     ]
   };
 
-  res.render('mypage', { "res": result });
+  console.log(result)
+
+  return res.render('mypage', { "res": result });
 });
 
 
@@ -40,13 +44,33 @@ router.post('/', function(req, res, next) {
   userdata.userinfo[userid][toname]='Y';
   msgdata.msg.push({"name":username, "to":req.body.name, "msg":msg});
 
-  console.log(JSON.stringify(userdata))
+  // console.log(JSON.stringify(userdata))
   console.log(JSON.stringify(msgdata))
   
   fs.writeFileSync('public/savefiles/user.json', JSON.stringify(userdata));
   fs.writeFileSync('public/savefiles/msg.json', JSON.stringify(msgdata));
 
-  res.redirect('/mypage');
+
+  userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
+  let msgsoen = userdata.userinfo[userid]["soen"];
+  let msgjiho = userdata.userinfo[userid]["jiho"];
+  let cnt = userdata.userinfo[userid]["cnt"];
+
+  let result = {
+    "username": username,
+    "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+    "cnt": cnt,
+    "contents": [
+      {"name":"소은","msg":"안녕하세요! 읽어주신 시를 들었어요. 어렵지만 너무 좋아요. 감사합니다.","reply":msgsoen},
+      {"name":"지호","msg":"감사합니다. 자기 전에 들었어요.","reply":msgjiho},
+    ]
+  };
+
+  // console.log(result)
+
+  return res.render('mypage', { "res": result });
+
+  // res.redirect('/mypage');
 });
 
 module.exports = router;

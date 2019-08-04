@@ -27,7 +27,14 @@ router.post('/', function(req, res) {
   //     console.log('Saved!');
   // });
 
-  res.send('send');
+  let userid = req.session.userid;
+  let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
+  let nowcnt = userdata.userinfo[userid]["cnt"];
+  userdata.userinfo[userid]["cnt"]= parseInt(nowcnt)+1;
+  fs.writeFileSync('public/savefiles/user.json', JSON.stringify(userdata));
+
+  // res.send('send');
+  res.redirect('/mypage');
 });
 
 

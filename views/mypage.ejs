@@ -14,7 +14,7 @@
         padding: 0;
         margin: 0;
         margin-left: auto;
-margin-right: auto;
+        margin-right: auto;
         align-items: center;
         text-align: center
       }
@@ -25,6 +25,7 @@ margin-right: auto;
       h1 {
         text-align: center
       }
+
     </style>
 </head>
 <body>
@@ -45,10 +46,11 @@ margin-right: auto;
      -->
 
     <h3>내가 읽은 컨텐츠</h3>
-    <p>지금까지 총 1개의 책을 읽어주셨습니다.</p>
+    <p>지금까지 총 <%= res.cnt %>번의 시를 읽어주셨습니다.</p>
 
     <h3>나에게 온 메세지</h3>
 
+    <% if(res.cnt!=0){ %>
     <ul>
       <% for(let i=0; i<res.contents.length; i++){ %>
         <li>
@@ -74,6 +76,9 @@ margin-right: auto;
         </li>
       <% } %>
     </ul>
+    <% } else { %>
+      <p>아직 도착한 메시지가 없습니다.</p>
+    <% } %>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

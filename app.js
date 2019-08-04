@@ -54,7 +54,7 @@ app.use('/contents', contentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.redirect('/login');
+  return res.redirect('/login');
   next(createError(404));
 });
 
