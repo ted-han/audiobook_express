@@ -142,7 +142,8 @@ function createDownloadLink(blob,encoding) {
 	link.innerHTML = link.download;
 
 	//upload link
-	var upload = document.createElement('a');
+	var upload = document.createElement('button');
+	upload.className = "badge badge-primary";
 	// upload.href="#";
 	upload.innerHTML = "녹음파일 제출";
 	upload.addEventListener("click", function(event){
@@ -153,7 +154,8 @@ function createDownloadLink(blob,encoding) {
 			//   console.log("Server returned: ",e.target.responseText);
 				// console.log("Server returned: ",e.target.status);
 				if(e.target.status==200) {
-				location.href="/mypage";
+					alert("읽어주신 시가 정상적으로 등록되었습니다. 감사합니다.");
+					location.href="/mypage";
 				}
 			}
 		};

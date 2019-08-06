@@ -32,8 +32,9 @@
     <% include ./partials/header %>
     <h1>마이페이지</h1>
     <br/>
-    <h2><%= res.username %>님! 오늘도 안녕하세요.</h2>
-    <p>구독자: 0명 총 재생시간 : 10분</p>
+    <h2><%= res.username %>님!</h2>
+    <h3>오늘도 안녕하세요.</h3>
+    <p>총 0명의 아이가 읽어주신 시를 읽었습니다.</p>
 
     <!-- <h3>내 오디오북</h3>
     <ul>
@@ -50,7 +51,7 @@
 
     <h3>나에게 온 메세지</h3>
 
-    <% if(res.cnt!=0){ %>
+    <% if(res.cnt < 0){ %>
     <ul>
       <% for(let i=0; i<res.contents.length; i++){ %>
         <li>

@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
   // 없는 유저
   if(userlist.indexOf(phonenum)==-1) {
     //유저정보 저장
-    userdata.userinfo[phonenum] = {"name": username, "soen":"N", "jiho":"N"};
+    userdata.userinfo[phonenum] = {"name": username, "soen":"N", "jiho":"N", "cnt":0};
     userdata.users.push(phonenum);
     fs.writeFileSync('public/savefiles/user.json', JSON.stringify(userdata));
 
