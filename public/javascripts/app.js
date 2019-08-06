@@ -143,7 +143,7 @@ function createDownloadLink(blob,encoding) {
 
 	//upload link
 	var upload = document.createElement('button');
-	upload.className = "badge badge-primary";
+	upload.className = "btn btn-primary col-sm-12";
 	// upload.href="#";
 	upload.innerHTML = "녹음파일 제출";
 	upload.addEventListener("click", function(event){
