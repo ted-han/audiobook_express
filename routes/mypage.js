@@ -14,7 +14,12 @@ router.get('/', function(req, res, next) {
   let cnt = userdata.userinfo[userid]["cnt"];
 
 
+  console.log('@@@@@@@@@@@@@@@@@@@@@');
+  console.log(JSON.stringify(userdata))
+  console.log('@@@@@@@@@@@@@@@@@@@@@');
+  
   let result = {
+    "userid": userid,
     "username": username,
     "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
     "cnt": cnt,
@@ -45,8 +50,8 @@ router.post('/', function(req, res, next) {
   msgdata.msg.push({"name":username, "to":req.body.name, "msg":msg});
 
   // console.log(JSON.stringify(userdata))
-  console.log(JSON.stringify(msgdata))
-  
+  // console.log(JSON.stringify(msgdata));
+   
   fs.writeFileSync('public/savefiles/user.json', JSON.stringify(userdata));
   fs.writeFileSync('public/savefiles/msg.json', JSON.stringify(msgdata));
 
@@ -57,6 +62,7 @@ router.post('/', function(req, res, next) {
   let cnt = userdata.userinfo[userid]["cnt"];
 
   let result = {
+    "userid": userid,
     "username": username,
     "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
     "cnt": cnt,
@@ -66,7 +72,12 @@ router.post('/', function(req, res, next) {
     ]
   };
 
-  // console.log(result)
+  console.log(result)
+  msgdata = JSON.parse(fs.readFileSync('public/savefiles/msg.json', 'utf8'));
+  console.log('###################');
+  console.log(JSON.stringify(msgdata));
+  console.log('###################');
+
 
   return res.render('mypage', { "res": result });
 

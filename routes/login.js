@@ -6,11 +6,9 @@ var fs = require('fs');
 
 router.get('/', function(req, res, next) {
   if(req.session.username) {
-    console.log('index로 리다이렉트'); 
+    console.log('index로 리다이렉트');
     return res.redirect('/mypage');
   }
-
-
 
   res.render('login', { res: {}});
 });
@@ -20,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   let phonenum = req.body.phonenum;
-  console.log('입력ID: '+phonenum)
+  // console.log('입력ID: '+phonenum)
 
   let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
   // console.log(JSON.stringify(userdata.users));
@@ -33,8 +31,8 @@ router.post('/', function(req, res, next) {
   } else {
     let userid = phonenum;
     let username = userdata.userinfo[phonenum].name;
-    console.log('userid: ' +userid);
-    console.log('username: ' +username);
+    // console.log('userid: ' +userid);
+    // console.log('username: ' +username);
     req.session.userid = userid;
     req.session.username = username;
     return res.redirect('/mypage');

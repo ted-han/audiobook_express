@@ -51,32 +51,60 @@
 
     <h3>나에게 온 메세지</h3>
 
-    <% if(res.cnt < 0){ %>
-    <ul>
-      <% for(let i=0; i<res.contents.length; i++){ %>
-        <li>
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title"><%= res.contents[i].name %></h5>
-              <p class="card-text"><%= res.contents[i].msg %> </p>
 
-              <% if(res.contents[i].reply=='Y'){ %>
-                <button type="button" class="badge badge-secondary" >
-                  답장완료
-                </button>
-              <% } else { %>
-                <td style="background-color:rgb(241, 71, 71)"><%= res.stts %></td>
-                <!-- Button trigger modal -->
-                <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" data-myvalue="<%= res.contents[i].name %>" >
-                  답장하기
-                </button>
-              <% } %>
+    <% if(res.userid == '11' || res.userid=='01075677737') { %>
+      <ul>
+        <% for(let i=0; i<res.contents.length; i++){ %>
+          <li>
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= res.contents[i].name %></h5>
+                <p class="card-text"><%= res.contents[i].msg %> </p>
+
+                <% if(res.contents[i].reply=='Y'){ %>
+                  <button type="button" class="badge badge-secondary" >
+                    답장완료
+                  </button>
+                <% } else { %>
+                  <td style="background-color:rgb(241, 71, 71)"><%= res.stts %></td>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" data-myvalue="<%= res.contents[i].name %>" >
+                    답장하기
+                  </button>
+                <% } %>
+              </div>
             </div>
-          </div>
 
-        </li>
-      <% } %>
-    </ul>
+          </li>
+        <% } %>
+      </ul>
+
+    <% } else if(res.cnt < 0){ %>
+      <ul>
+        <% for(let i=0; i<res.contents.length; i++){ %>
+          <li>
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= res.contents[i].name %></h5>
+                <p class="card-text"><%= res.contents[i].msg %> </p>
+
+                <% if(res.contents[i].reply=='Y'){ %>
+                  <button type="button" class="badge badge-secondary" >
+                    답장완료
+                  </button>
+                <% } else { %>
+                  <td style="background-color:rgb(241, 71, 71)"><%= res.stts %></td>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" data-myvalue="<%= res.contents[i].name %>" >
+                    답장하기
+                  </button>
+                <% } %>
+              </div>
+            </div>
+
+          </li>
+        <% } %>
+      </ul>
     <% } else { %>
       <p>아직 도착한 메시지가 없습니다.</p>
     <% } %>

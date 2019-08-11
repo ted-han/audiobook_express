@@ -17,8 +17,8 @@ router.post('/', function(req, res) {
 
   // let audioname = new Date().toISOString();
 
-  console.log('post contents')
-  console.log(req.body)
+  // console.log('post contents')
+  // console.log(req.body)
   // console.log(JSON.stringify(req.body))
 
   // fs.appendFile(`../savefiles/${audioname}.wav`, req.body, function (err) {
