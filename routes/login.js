@@ -42,4 +42,14 @@ router.post('/', function(req, res, next) {
 
 
 
+router.get('/logout', function(req, res, next) {
+  req.session.userid = null
+  req.session.username = null
+
+  return res.redirect('/login');
+});
+
+
+
+
 module.exports = router;

@@ -17,17 +17,31 @@ router.get('/', function(req, res, next) {
   console.log('@@@@@@@@@@@@@@@@@@@@@');
   console.log(JSON.stringify(userdata))
   console.log('@@@@@@@@@@@@@@@@@@@@@');
-  
-  let result = {
-    "userid": userid,
-    "username": username,
-    "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
-    "cnt": cnt,
-    "contents": [
-      {"name":"소은","msg":"안녕하세요! 읽어주신 시를 들었어요. 어렵지만 너무 좋아요. 감사합니다.","reply":msgsoen},
-      {"name":"지호","msg":"감사합니다. 자기 전에 들었어요.","reply":msgjiho},
-    ]
-  };
+
+  let result;
+
+  if(userid=='01039224705') {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":msgsoen},
+      ]
+    };
+  } else {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":msgjiho},
+      ]
+    };
+  }
+
 
   console.log(result)
 
@@ -46,8 +60,9 @@ router.post('/', function(req, res, next) {
   let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
   let msgdata = JSON.parse(fs.readFileSync('public/savefiles/msg.json', 'utf8'));
   
+  let d = new Date();
   userdata.userinfo[userid][toname]='Y';
-  msgdata.msg.push({"name":username, "to":req.body.name, "msg":msg});
+  msgdata.msg.push({"name":username, "to":req.body.name, "msg":msg, "time": `${d.toLocaleString()}`});
 
   // console.log(JSON.stringify(userdata))
   // console.log(JSON.stringify(msgdata));
@@ -61,16 +76,30 @@ router.post('/', function(req, res, next) {
   let msgjiho = userdata.userinfo[userid]["jiho"];
   let cnt = userdata.userinfo[userid]["cnt"];
 
-  let result = {
-    "userid": userid,
-    "username": username,
-    "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
-    "cnt": cnt,
-    "contents": [
-      {"name":"소은","msg":"안녕하세요! 읽어주신 시를 들었어요. 어렵지만 너무 좋아요. 감사합니다.","reply":msgsoen},
-      {"name":"지호","msg":"감사합니다. 자기 전에 들었어요.","reply":msgjiho},
-    ]
-  };
+  let result;
+
+  if(userid=='01039224705') {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":msgsoen},
+      ]
+    };
+  } else {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":msgjiho},
+      ]
+    };
+  }
+
 
   console.log(result)
   msgdata = JSON.parse(fs.readFileSync('public/savefiles/msg.json', 'utf8'));
