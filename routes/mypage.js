@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
   let result;
 
-  if(userid=='01039224705') {
+  if(userid=='01039224705' || userid=='01075161580') {
     result = {
       "userid": userid,
       "username": username,
