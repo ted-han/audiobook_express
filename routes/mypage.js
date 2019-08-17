@@ -9,8 +9,10 @@ router.get('/', function(req, res, next) {
   let userid = req.session.userid;
   let username = req.session.username;
   let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
-  let msgsoen = userdata.userinfo[userid]["soen"];
-  let msgjiho = userdata.userinfo[userid]["jiho"];
+  let 소은 = userdata.userinfo[userid]["소은"];
+  let 지호 = userdata.userinfo[userid]["지호"];
+  let jiyoo = userdata.userinfo[userid]["지유"];
+  let 민후 = userdata.userinfo[userid]["민후"];
   let cnt = userdata.userinfo[userid]["cnt"];
 
 
@@ -20,14 +22,38 @@ router.get('/', function(req, res, next) {
 
   let result;
 
-  if(userid=='01039224705' || userid=='01075161580') {
+
+  if(userid=='01039224705') {
     result = {
       "userid": userid,
       "username": username,
       "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
       "cnt": cnt,
       "contents": [
-        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":msgsoen},
+        {"name":"지유","msg":"또 들려주세요","reply":jiyoo},
+        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":소은},
+      ]
+    };
+  } else if(userid=='01071290163') {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"민후","msg":"감사합니다","reply":민후},
+        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":지호},
+      ]
+    };
+  } else if(userid=='01075677737') {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"지유","msg":"또 들려주세요","reply":jiyoo},
+        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":지호},
       ]
     };
   } else {
@@ -37,11 +63,11 @@ router.get('/', function(req, res, next) {
       "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
       "cnt": cnt,
       "contents": [
-        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":msgjiho},
+        {"name":"민후","msg":"감사합니다","reply":민후},
+        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":소은},
       ]
     };
   }
-
 
   console.log(result)
 
@@ -54,7 +80,7 @@ router.post('/', function(req, res, next) {
 
   let userid = req.session.userid;
   let username = req.session.username;
-  let toname = req.body.name=='소은'?'soen':'jiho';
+  let toname = req.body.name;
   let msg = req.body.msg;
 
   let userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
@@ -72,8 +98,10 @@ router.post('/', function(req, res, next) {
 
 
   userdata = JSON.parse(fs.readFileSync('public/savefiles/user.json', 'utf8'));
-  let msgsoen = userdata.userinfo[userid]["soen"];
-  let msgjiho = userdata.userinfo[userid]["jiho"];
+  let 소은 = userdata.userinfo[userid]["소은"];
+  let 지호 = userdata.userinfo[userid]["지호"];
+  let jiyoo = userdata.userinfo[userid]["지유"];
+  let 민후 = userdata.userinfo[userid]["민후"];
   let cnt = userdata.userinfo[userid]["cnt"];
 
   let result;
@@ -85,7 +113,30 @@ router.post('/', function(req, res, next) {
       "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
       "cnt": cnt,
       "contents": [
-        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":msgsoen},
+        {"name":"지유","msg":"또 들려주세요","reply":jiyoo},
+        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":소은},
+      ]
+    };
+  } else if(userid=='01071290163') {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"민후","msg":"감사합니다","reply":민후},
+        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":지호},
+      ]
+    };
+  } else if(userid=='01075677737') {
+    result = {
+      "userid": userid,
+      "username": username,
+      "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
+      "cnt": cnt,
+      "contents": [
+        {"name":"지유","msg":"또 들려주세요","reply":jiyoo},
+        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":지호},
       ]
     };
   } else {
@@ -95,7 +146,8 @@ router.post('/', function(req, res, next) {
       "abook": ['도깨비방망이','토끼와거북이','잭과콩나무'],
       "cnt": cnt,
       "contents": [
-        {"name":"지호","msg":"좋아요! 감사합니다!!","reply":msgjiho},
+        {"name":"민후","msg":"감사합니다","reply":민후},
+        {"name":"소은","msg":"자기 전에 들어요 감사합니다.,","reply":소은},
       ]
     };
   }
